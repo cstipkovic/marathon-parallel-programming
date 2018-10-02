@@ -31,7 +31,7 @@ void amd (uint32_t* dists, uint32_t v) {
 	uint32_t solution = 0;
 
 	for (i = 0; i < v; ++i) {
-		#pragma omp parallel for reduction(+:smd,paths)
+		#pragma omp parallel for num_threads(8) reduction(+:smd,paths)
 		for (j = 0; j < v; ++j) {
 			// We only consider if the vertices are different and there is a path
 			if ((i != j) && (dists[i*v+j] < infinity)) {
